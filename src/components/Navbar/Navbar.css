@@ -1,0 +1,104 @@
+.navbar {
+    width: 100%;
+}
+
+.navbar-container {
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    gap: 5px;
+}
+
+#logout-btn {
+    padding: 7px;
+    border-radius: 5px;
+    border: 2px solid rgb(197, 197, 197);
+    background-color: rgb(240, 237, 100);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#authenticated-div {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#authenticated-div > div {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+#todo-app-logo {
+    color: white;
+    font-size: 1.8rem;
+}
+
+#non-authenticated-div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#display-name {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 1200px) {
+    .navbar-container {
+        font-size: 1.2rem;
+    }
+    
+    #todo-app-logo {
+        font-size: 1.6rem;
+    }
+
+    #display-name {
+        font-size: 1.1rem;
+    }
+
+    #logout-btn {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .navbar-container {
+        font-size: 1rem;
+    }
+    
+    #todo-app-logo {
+        font-size: 1.4rem;
+    }
+
+    #display-name {
+        font-size: 1rem;
+    }
+
+    #logout-btn {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar-container {
+        font-size: 0.9rem;
+    }
+    
+    #todo-app-logo {
+        font-size: 1.2rem;
+    }
+
+    #display-name {
+        font-size: 0.9rem;
+    }
+
+    #logout-btn {
+        font-size: 0.7rem;
+    }
+}
