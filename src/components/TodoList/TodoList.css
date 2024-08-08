@@ -21,6 +21,8 @@
     border-radius: 5px;
     border: 1px solid #ddd;
     width: calc(33.33% - 1rem);
+    background-color: white;
+    color: black;
 }
 
 .todo-input-box:focus {
@@ -212,6 +214,8 @@
     padding: 0.8rem;
     border-radius: 5px;
     border: 1px solid #ddd;
+    background-color: white;
+    color: black;
 }
 
 @media (max-width: 1200px) {

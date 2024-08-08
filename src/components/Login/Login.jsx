@@ -35,7 +35,7 @@ export default function Login({ onLogin }) {
                     <button type="submit" id='login-btn'>Login</button>
 
                     <div>
-                        <span>Don't have an account? </span>
+                        <span id='dont-account'>Don't have an account? </span>
                         <Link to='/register'>Click here</Link>
                     </div>
                 </form>

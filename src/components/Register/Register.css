@@ -20,6 +20,8 @@
     border-radius: 5px;
     border: 2px solid rgb(197, 197, 197);
     width: 100%;
+    background-color: color;
+    color: black;
 }
 
 .input-box:focus {
@@ -34,6 +36,10 @@
     font-size: 1rem;
     width: 100%;
     cursor: pointer;
+}
+
+#already-account {
+    color: black;
 }
 
 @media (max-width: 1100px) {
