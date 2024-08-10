@@ -18,6 +18,7 @@
     background-color: rgb(240, 237, 100);
     font-size: 1rem;
     cursor: pointer;
+    color: black;
 }
 
 #authenticated-div {
