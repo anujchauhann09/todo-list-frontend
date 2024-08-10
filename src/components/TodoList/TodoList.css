@@ -84,6 +84,7 @@ input[type="date"]::placeholder {
     border: 1px solid #ddd;
     padding: 0.8rem;
     background-color: #f4f4f4;
+    color: black;
     text-align: center;
     overflow: auto;
     white-space: nowrap;
@@ -98,6 +99,7 @@ input[type="date"]::placeholder {
     border: 1px solid #ddd;
     padding: 0.8rem;
     text-align: center;
+    color: black;
 }
 
 #save-btn, #delete-btn, #edit-btn {
@@ -214,7 +216,8 @@ input[type="date"]::placeholder {
 }
 
 .edit-input-box {
-    width: 100%;
+    /* width: 100%; */
+    width: 200px;
     padding: 0.8rem;
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -237,6 +240,10 @@ input[type="date"]::placeholder {
 
     #add-todo {
         width: 100%;
+    }
+
+    .edit-input-box {
+        width: 170px; 
     }
 }
 
@@ -270,6 +277,10 @@ input[type="date"]::placeholder {
         font-size: 0.8rem;
         padding: 0.5rem;
     }
+
+    .edit-input-box {
+        width: 150px; 
+    }
 }
 
 @media (max-width: 540px) {
@@ -293,5 +304,9 @@ input[type="date"]::placeholder {
     .todo-list-container {
         width: 100%;
         padding: 0.5rem;
+    }
+
+    .edit-input-box {
+        width: 130px;
     }
 }
