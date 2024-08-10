@@ -11,7 +11,7 @@ export default function Login({ onLogin }) {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        axios.post('https://master--todo-hub-app.netlify.app/auth/login', {email, password})
+        axios.post('https://todo-list-backend-bian.onrender.com/auth/login', {email, password})
             .then(res => {
                 setEmail('')
                 setPassword('')

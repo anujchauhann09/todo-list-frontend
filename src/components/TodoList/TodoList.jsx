@@ -19,7 +19,7 @@ export default function TodoList() {
         const userToken = localStorage.getItem('token')
         if(userToken) {
             setToken(userToken)
-            axios.get('https://master--todo-hub-app.netlify.app/auth/getTodoList', {
+            axios.get('https://todo-list-backend-bian.onrender.com/auth/getTodoList', {
                 headers: {
                     'Authorization': `Bearer ${userToken}`,
                     'Accept': 'application/json',
@@ -67,7 +67,7 @@ export default function TodoList() {
             return
         }
 
-        axios.post('https://master--todo-hub-app.netlify.app/addTodoList', {
+        axios.post('https://todo-list-backend-bian.onrender.com/addTodoList', {
             task: newTask,
             status: newStatus,
             deadline: newDeadline
@@ -88,7 +88,7 @@ export default function TodoList() {
     }
 
     const deleteTask = (id) => {
-        axios.delete('https://master--todo-hub-app.netlify.app/deleteTodoList/' + id, {
+        axios.delete('https://todo-list-backend-bian.onrender.com/deleteTodoList/' + id, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',
@@ -116,7 +116,7 @@ export default function TodoList() {
             return
         }
 
-        axios.post('https://master--todo-hub-app.netlify.app/updateTodoList/' + id, editedData, {
+        axios.post('https://todo-list-backend-bian.onrender.com/updateTodoList/' + id, editedData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',
