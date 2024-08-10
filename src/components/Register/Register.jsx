@@ -12,7 +12,7 @@ export default function Register() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        axios.post('http://127.0.0.1:5173/auth/register', {email, password, name})
+        axios.post('https://master--todo-hub-app.netlify.app/auth/register', {email, password, name})
             .then(res => {
                     setName('')
                     setEmail('')

@@ -19,7 +19,7 @@ export default function TodoList() {
         const userToken = localStorage.getItem('token')
         if(userToken) {
             setToken(userToken)
-            axios.get('http://127.0.0.1:5173/auth/getTodoList', {
+            axios.get('https://master--todo-hub-app.netlify.app/auth/getTodoList', {
                 headers: {
                     'Authorization': `Bearer ${userToken}`,
                     'Accept': 'application/json',
@@ -67,7 +67,7 @@ export default function TodoList() {
             return
         }
 
-        axios.post('http://127.0.0.1:5173/addTodoList', {
+        axios.post('https://master--todo-hub-app.netlify.app/addTodoList', {
             task: newTask,
             status: newStatus,
             deadline: newDeadline
@@ -88,7 +88,7 @@ export default function TodoList() {
     }
 
     const deleteTask = (id) => {
-        axios.delete('http://127.0.0.1:5173/deleteTodoList/' + id, {
+        axios.delete('https://master--todo-hub-app.netlify.app/deleteTodoList/' + id, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',
@@ -116,7 +116,7 @@ export default function TodoList() {
             return
         }
 
-        axios.post('http://127.0.0.1:5173/updateTodoList/' + id, editedData, {
+        axios.post('https://master--todo-hub-app.netlify.app/updateTodoList/' + id, editedData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',

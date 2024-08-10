@@ -29,6 +29,10 @@
     outline: 0;
 }
 
+input[type="date"]::placeholder {
+    color: #ddd;
+}
+  
 #task {
     width: calc(50% - 1rem);
 }
