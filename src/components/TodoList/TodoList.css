@@ -152,6 +152,9 @@ input[type="date"]::placeholder {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes appear {
@@ -159,12 +162,8 @@ input[type="date"]::placeholder {
     100% { opacity: 1; }
 }  
 
-#no-todos-row {
+#no-todos-row, #loading-todos-row, #error-todos-row {
     width: 100%;
-}
-
-.no-todos {  
-    display: inline-block;
 }
 
 .no-todos span {
@@ -200,6 +199,7 @@ input[type="date"]::placeholder {
     text-align: center;
     padding: 1rem;
     color: black;
+    display: inline-block;
 }
 
 @keyframes blink {
