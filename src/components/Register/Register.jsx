@@ -2,6 +2,8 @@ import { useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import './Register.css'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Register() {
     const [name, setName] = useState("")
@@ -20,9 +22,11 @@ export default function Register() {
                     localStorage.setItem('token', res.data.token || ''); 
                     localStorage.setItem('name', res.data.name || '');
 		            navigate('/')
+                    toast.success('Registration successful!')
                 })
             .catch(err => {
-                alert(`Not registered, Please try again`)
+                // alert(`Not registered, Please try again`)
+                toast.error('Not registered, Please try again')
                 // console.error(err)
             })
     }

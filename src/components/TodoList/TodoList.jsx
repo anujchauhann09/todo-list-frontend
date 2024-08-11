@@ -1,6 +1,8 @@
 import './TodoList.css'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function TodoList() {
     const [todoList, setTodoList] = useState([])
@@ -35,7 +37,8 @@ export default function TodoList() {
                     setLoading(false)
                 })
                 .catch(err => {
-                    alert(`Error in loading todos, Please refresh the page`)
+                    // alert(`Error in loading todos, Please refresh the page`)
+                    toast.error("Error loading todos, Please refresh the page")
                     setError("Error loading todos")
                 })
         }
@@ -59,11 +62,13 @@ export default function TodoList() {
 
     const addTask = () => {
         if (!newTask || !newStatus || !newDeadline) {
-            alert(`All fields must be filled out.`)
+            // alert(`All fields must be filled out.`)
+            toast.error("All fields must be filled out.")
             return
         }
         else if (!token) {
-            alert(`Please Register/Login first`)
+            // alert(`Please Register/Login first`)
+            toast.error("Please Register/Login first")
             return
         }
 
@@ -80,10 +85,12 @@ export default function TodoList() {
         })
             .then(res => {
                 // console.log(res)
+                // toast.success("Todo added successfully!")
                 window.location.reload()
             })
             .catch(err => {
-                alert(`Error in adding todo, Please add again`)
+                // alert(`Error in adding todo, Please add again`)
+                toast.error("Error adding todo, Please try again")
             })
     }
 
@@ -97,10 +104,12 @@ export default function TodoList() {
         })
             .then(result => {
                 // console.log(result)
+                // toast.success("Todo deleted successfully!")
                 window.location.reload()
             })
             .catch(error => {
-                alert(`Error in deleting todo, Please delete again`)
+                // alert(`Error in deleting todo, Please delete again`)
+                toast.error("Error deleting todo, Please try again")
             })
     }
 
@@ -112,7 +121,8 @@ export default function TodoList() {
         }
 
         if (!editedTask || !editedStatus || !editedDeadline) {
-            alert("All fields must be filled out.")
+            // alert("All fields must be filled out.")
+            toast.error("All fields must be filled out.")
             return
         }
 
@@ -125,6 +135,7 @@ export default function TodoList() {
         })
             .then(result => {
                 // console.log(result)
+                // toast.success("Todo updated successfully!")
                 setEditableId(null)
                 setEditedTask("")
                 setEditedStatus("")
@@ -132,7 +143,8 @@ export default function TodoList() {
                 window.location.reload()
             })
             .catch(err => {
-                alert(`Error in saving todo, Please save again`)
+                // alert(`Error in saving todo, Please save again`)
+                toast.error("Error saving todo, Please try again")
             })
     }
 
@@ -223,7 +235,7 @@ export default function TodoList() {
                     )}
                 </div>
             </div>
-            
+
         </>
     )
 }

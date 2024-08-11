@@ -2,6 +2,8 @@ import { useState } from 'react'
 import axios from 'axios'
 import {Link, useNavigate} from 'react-router-dom'
 import './Login.css'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login({ onLogin }) {
     const [email, setEmail] = useState("")
@@ -19,9 +21,11 @@ export default function Login({ onLogin }) {
                 localStorage.setItem('name', res.data.name || '')
                 onLogin()
 		        navigate('/') 
+                toast.success('Login successful!')
             })
             .catch(err => {
-                alert(`Not logged in, Please try again`)
+                // alert(`Not logged in, Please try again`)
+                toast.error('Not logged in, Please try again')
                 // console.error(err)
             })
     }

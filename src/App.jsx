@@ -5,6 +5,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   const[isAuthenticated, setIsAuthenticated] = useState(false)
@@ -48,6 +50,17 @@ function App() {
       <header>
         <Navbar name={name} isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
       </header>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Routes>
         <Route path='/' element={<TodoList />}></Route>
         <Route path='/register' element={<Register />} />
