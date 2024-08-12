@@ -1,5 +1,24 @@
+:root {
+    --navbar-bg: white;
+    --btn-bg: #c9d42b;
+    --btn-border: rgb(197, 197, 197);
+    --text-color: black;
+    --logo-color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --navbar-bg: #222;
+        --btn-bg: #444;
+        --btn-border: #555;
+        --text-color: #f4f4f4;
+        --logo-color: #fff;
+    }
+}
+
 .navbar {
     width: 100%;
+    background-color: var(--navbar-bg);
 }
 
 .navbar-container {
@@ -7,6 +26,7 @@
     display: flex;
     padding: 5px;
     justify-content: space-between;
+    align-items: center;
     font-size: 1.4rem;
     gap: 5px;
 }
@@ -14,11 +34,11 @@
 #logout-btn {
     padding: 7px;
     border-radius: 5px;
-    border: 2px solid rgb(197, 197, 197);
-    background-color: rgb(240, 237, 100);
+    border: 2px solid var(--btn-border);
+    background-color: var(--btn-bg);
     font-size: 1rem;
     cursor: pointer;
-    color: black;
+    color: var(--text-color);
 }
 
 #authenticated-div {
@@ -36,28 +56,47 @@
 }
 
 #todo-app-logo {
-    color: white;
+    color: var(--logo-color);
     font-size: 1.8rem;
 }
 
 #non-authenticated-div {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
 }
 
 #display-name {
     font-size: 1.2rem;
-    color: black;
+    color: var(--text-color);
 }
 
 @media (max-width: 1200px) {
     .navbar-container {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     
     #todo-app-logo {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
+    }
+
+    #display-name {
+        font-size: 1.2rem;
+    }
+
+    #logout-btn {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .navbar-container {
+        font-size: 1.1rem;
+    }
+    
+    #todo-app-logo {
+        font-size: 1.5rem;
     }
 
     #display-name {
@@ -69,13 +108,13 @@
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 600px) {
     .navbar-container {
         font-size: 1rem;
     }
     
     #todo-app-logo {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 
     #display-name {
@@ -84,23 +123,5 @@
 
     #logout-btn {
         font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 600px) {
-    .navbar-container {
-        font-size: 0.9rem;
-    }
-    
-    #todo-app-logo {
-        font-size: 1.2rem;
-    }
-
-    #display-name {
-        font-size: 0.9rem;
-    }
-
-    #logout-btn {
-        font-size: 0.7rem;
     }
 }

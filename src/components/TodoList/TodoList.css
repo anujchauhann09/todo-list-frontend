@@ -1,8 +1,46 @@
+:root {
+    --background-color: white;
+    --text-color: black;
+    --input-background-color: white;
+    --input-text-color: black;
+    --button-background-color: #c9d42b;
+    --button-text-color: white;
+    --button-hover-background-color: white;
+    --button-hover-text-color: #c9d42b;
+    --table-heading-background-color: #69b6b6;
+    --table-heading-text-color: white;
+    --table-cell-background-color: #f4f4f4;
+    --table-cell-text-color: black;
+    --save-btn-background-color: #20691d;
+    --delete-btn-background-color: #a03a09;
+    --edit-btn-background-color: #46b1cc;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #333;
+        --text-color: #f4f4f4;
+        --input-background-color: #555;
+        --input-text-color: #f4f4f4;
+        --button-background-color: #444;
+        --button-text-color: #f4f4f4;
+        --button-hover-background-color: #666;
+        --button-hover-text-color: #f4f4f4;
+        --table-heading-background-color: #444;
+        --table-heading-text-color: #f4f4f4;
+        --table-cell-background-color: #555;
+        --table-cell-text-color: #f4f4f4;
+        --save-btn-background-color: #005f00;
+        --delete-btn-background-color: #800000;
+        --edit-btn-background-color: #00aaff;
+    }
+}
+
 .todo-list-container {
     width: 90%;
     max-width: 1200px;
     margin: 2rem auto;
-    background-color: white;
+    background-color: var(--background-color);
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -21,8 +59,8 @@
     border-radius: 5px;
     border: 1px solid #ddd;
     width: calc(33.33% - 1rem);
-    background-color: white;
-    color: black;
+    background-color: var(--input-background-color);
+    color: var(--input-text-color);
 }
 
 .todo-input-box:focus {
@@ -30,9 +68,9 @@
 }
 
 input[type="date"]::placeholder {
-    color: black;
+    color: var(--input-text-color);
 }
-  
+
 #task {
     width: calc(50% - 1rem);
 }
@@ -43,9 +81,9 @@ input[type="date"]::placeholder {
 
 #add-todo {
     padding: 0.8rem 1.5rem;
-    background-color: #c9d42b;
+    background-color: var(--button-background-color);
     width: 100%;
-    color: white;
+    color: var(--button-text-color);
     cursor: pointer;
     border-radius: 5px;
     border: none;
@@ -53,9 +91,9 @@ input[type="date"]::placeholder {
 }
 
 #add-todo:hover {
-    background-color: white;
-    color: #c9d42b;
-    border: 1px solid #c9d42b;
+    background-color: var(--button-hover-background-color);
+    color: var(--button-hover-text-color);
+    border: 1px solid var(--button-hover-background-color);
 }
 
 .table {
@@ -64,8 +102,8 @@ input[type="date"]::placeholder {
 }
 
 #todo-list-sub-headings th {
-    background-color: #69b6b6;
-    color: white;
+    background-color: var(--table-heading-background-color);
+    color: var(--table-heading-text-color);
     padding: 0.8rem;
     border: 1px solid #ddd;
     text-align: center;
@@ -75,16 +113,16 @@ input[type="date"]::placeholder {
 .todo-list-sub-heading {
     border: 1px solid #ddd;
     padding: 0.8rem;
-    background-color: #69b6b6;
-    color: white;
+    background-color: var(--table-heading-background-color);
+    color: var(--table-heading-text-color);
     overflow: auto;
 }
 
 .todo-list-sub-content {
     border: 1px solid #ddd;
     padding: 0.8rem;
-    background-color: #f4f4f4;
-    color: black;
+    background-color: var(--table-cell-background-color);
+    color: var(--table-cell-text-color);
     text-align: center;
     overflow: auto;
     white-space: nowrap;
@@ -99,7 +137,7 @@ input[type="date"]::placeholder {
     border: 1px solid #ddd;
     padding: 0.8rem;
     text-align: center;
-    color: black;
+    color: var(--table-cell-text-color);
 }
 
 #save-btn, #delete-btn, #edit-btn {
@@ -113,20 +151,20 @@ input[type="date"]::placeholder {
 }
 
 #save-btn {
-    background-color: #20691d;
+    background-color: var(--save-btn-background-color);
 }
 
 #delete-btn {
-    background-color: #a03a09;
+    background-color: var(--delete-btn-background-color);
     margin-left: 4px;
 }
 
 #edit-btn {
-    background-color: #46b1cc;
+    background-color: var(--edit-btn-background-color);
 }
 
 #todo-list-task-heading, #todo-list-status-heading, #todo-list-deadline-heading, #todo-list-actions-heading {
-    width: 25%; 
+    width: 25%;
 }
 
 #todo-list-task-heading, #todo-list-task-content {
@@ -136,7 +174,7 @@ input[type="date"]::placeholder {
 #todo-list-status-heading, #todo-list-status-content,
 #todo-list-deadline-heading, #todo-list-deadline-content,
 #todo-list-actions-heading, #todo-list-actions-content {
-    width: 18.33%; 
+    width: 18.33%;
 }
 
 #todo-list-actions-heading, #todo-list-actions-content {
@@ -144,14 +182,14 @@ input[type="date"]::placeholder {
 }
 
 .table-wrapper {
-    overflow-x: auto; 
+    overflow-x: auto;
     width: 100%;
 }
 
 #todo-list-heading {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: #333;
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,7 +198,7 @@ input[type="date"]::placeholder {
 @keyframes appear {
     0% { opacity: 0.9; }
     100% { opacity: 1; }
-}  
+}
 
 #no-todos-row, #loading-todos-row, #error-todos-row {
     width: 100%;
@@ -198,7 +236,7 @@ input[type="date"]::placeholder {
     font-size: 1.5rem;
     text-align: center;
     padding: 1rem;
-    color: black;
+    color: var(--text-color);
     display: inline-block;
 }
 
@@ -217,13 +255,12 @@ input[type="date"]::placeholder {
 }
 
 .edit-input-box {
-    /* width: 100%; */
     width: 200px;
     padding: 0.8rem;
     border-radius: 5px;
     border: 1px solid #ddd;
-    background-color: white;
-    color: black;
+    background-color: var(--input-background-color);
+    color: var(--input-text-color);
 }
 
 @media (max-width: 1200px) {

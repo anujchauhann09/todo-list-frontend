@@ -34,6 +34,7 @@ export default function Register() {
     return (
         <>
             <div className="form-container">
+                <h2>Register</h2>
                 <form onSubmit={handleSubmit} id="register-form">
                     <input type="text" placeholder='Enter name' className="input-box" value={name} onChange={(e) => setName(e.target.value)} />
                     <input type="email" placeholder='Enter email' className="input-box" value={email} onChange={(e) => setEmail(e.target.value)} />

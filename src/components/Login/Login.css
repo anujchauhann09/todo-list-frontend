@@ -1,5 +1,29 @@
+:root {
+    --background-color: white;
+    --text-color: black;
+    --input-background-color: white;
+    --input-text-color: black;
+    --button-background-color: rgb(116, 218, 218);
+    --button-text-color: black;
+    --button-hover-background-color: #c9d42b;
+    --button-hover-text-color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #333;
+        --text-color: #f4f4f4;
+        --input-background-color: #555;
+        --input-text-color: #f4f4f4;
+        --button-background-color: #444;
+        --button-text-color: #f4f4f4;
+        --button-hover-background-color: #666;
+        --button-hover-text-color: #f4f4f4;
+    }
+}
+
 .form-container {
-    background-color: white;
+    background-color: var(--background-color);
     width: 40%;
     margin: auto;
     padding: 10px;
@@ -20,8 +44,8 @@
     border-radius: 5px;
     border: 2px solid rgb(197, 197, 197);
     width: 100%;
-    background-color: white;
-    color: black;
+    background-color: var(--input-background-color);
+    color: var(--input-text-color);
 }
 
 .input-box:focus {
@@ -32,13 +56,20 @@
     padding: 5px;
     border-radius: 5px;
     border: 2px solid rgb(197, 197, 197);
-    background-color: rgb(116, 218, 218);
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
     font-size: 1rem;
+    width: 100%;
     cursor: pointer;
 }
 
+#login-btn:hover {
+    background-color: var(--button-hover-background-color);
+    color: var(--button-hover-text-color);
+}
+
 #dont-account {
-    color: black;
+    color: var(--text-color);
 }
 
 @media (max-width: 1200px) {
@@ -46,20 +77,12 @@
         width: 40%;
         margin-top: 8vh;
     }
-
-    #login-btn {
-        font-size: 0.9rem;
-    }
 }
 
 @media (max-width: 900px) {
     .form-container {
         width: 50%;
         margin-top: 6vh;
-    }
-
-    #login-btn {
-        font-size: 0.8rem;
     }
 }
 
@@ -69,10 +92,6 @@
         margin-top: 5vh;
         padding: 15px;
     }
-
-    #login-btn {
-        font-size: 0.7rem;
-    }
 }
 
 @media (max-width: 400px) {
@@ -80,8 +99,7 @@
         width: 90%;
         margin-top: 4vh;
     }
-
     #login-btn {
-        font-size: 0.6rem;
+        font-size: 0.9rem;
     }
 }

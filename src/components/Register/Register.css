@@ -1,5 +1,31 @@
+:root {
+    --background-color: white;
+    --text-color: black;
+    --input-background-color: white;
+    --input-text-color: black;
+    --button-background-color: #c9d42b;
+    --button-text-color: white;
+    --button-hover-background-color: white;
+    --button-hover-text-color: #c9d42b;
+    --form-container-bg: white;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #333;
+        --text-color: #f4f4f4;
+        --input-background-color: #555;
+        --input-text-color: #f4f4f4;
+        --button-background-color: #444;
+        --button-text-color: #f4f4f4;
+        --button-hover-background-color: #666;
+        --button-hover-text-color: #f4f4f4;
+        --form-container-bg: #333;
+    }
+}
+
 .form-container {
-    background-color: white;
+    background-color: var(--form-container-bg);
     width: 40%;
     margin: auto;
     padding: 10px;
@@ -20,8 +46,8 @@
     border-radius: 5px;
     border: 2px solid rgb(197, 197, 197);
     width: 100%;
-    background-color: color;
-    color: black;
+    background-color: var(--input-background-color);
+    color: var(--input-text-color);
 }
 
 .input-box:focus {
@@ -32,14 +58,20 @@
     padding: 5px;
     border-radius: 5px;
     border: 2px solid rgb(197, 197, 197);
-    background-color: rgb(116, 218, 218);
+    background-color: var(--button-background-color);
     font-size: 1rem;
     width: 100%;
     cursor: pointer;
+    color: var(--button-text-color);
+}
+
+#register-btn:hover {
+    background-color: var(--button-hover-background-color);
+    color: var(--button-hover-text-color);
 }
 
 #already-account {
-    color: black;
+    color: var(--text-color);
 }
 
 @media (max-width: 1100px) {

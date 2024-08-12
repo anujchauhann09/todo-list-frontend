@@ -20,7 +20,7 @@ export default function Login({ onLogin }) {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('name', res.data.name || '')
                 onLogin()
-		        navigate('/') 
+	navigate('/') 
                 toast.success('Login successful!')
             })
             .catch(err => {
@@ -33,6 +33,7 @@ export default function Login({ onLogin }) {
     return (
         <>
             <div className="form-container">
+                <h2 id="login-heading">Login</h2>
                 <form onSubmit={handleSubmit} id="login-form">
                     <input type="email" placeholder='Enter email' className='input-box' value={email} onChange={(e) => setEmail(e.target.value)} />
                     <input type="password" placeholder='Enter password' className='input-box' value={password} onChange={(e) => setPassword(e.target.value)} />
