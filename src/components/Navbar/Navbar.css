@@ -31,6 +31,14 @@
     gap: 5px;
 }
 
+#privacy-policy {
+    margin-right: 10px;
+}
+
+#terms-of-service {
+    margin-right: 10px;
+}
+
 #logout-btn {
     padding: 7px;
     border-radius: 5px;

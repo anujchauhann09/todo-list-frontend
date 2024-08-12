@@ -5,6 +5,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
+import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy'
+import TermsOfService from './components/TermsOfService/TermsOfService'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -64,9 +66,11 @@ function App() {
       <Routes>
         <Route path='/' element={<TodoList />}></Route>
         <Route path='/register' element={<Register />} />
+        <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+        <Route path='/terms-of-service' element={<TermsOfService />} />
         <Route path='/login' element={<Login onLogin={() => {
           setIsAuthenticated(true);
-          setName(localStorage.getItem('name'));
+          setName(localStorage.getItem('name'))
       }} />} />
       </Routes>
     </>

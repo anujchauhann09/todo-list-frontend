@@ -79,6 +79,18 @@ input[type="date"]::placeholder {
     width: calc(25% - 1rem);
 }
 
+.todos-input-box input[type=email], 
+.email-note {
+    flex: 1; 
+}
+
+.email-note {
+    flex: 1 1 100%; 
+    margin-top: 5px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
 #add-todo {
     padding: 0.8rem 1.5rem;
     background-color: var(--button-background-color);
@@ -93,7 +105,7 @@ input[type="date"]::placeholder {
 #add-todo:hover {
     background-color: var(--button-hover-background-color);
     color: var(--button-hover-text-color);
-    border: 1px solid var(--button-hover-background-color);
+    border: 1px solid yellow;
 }
 
 .table {
@@ -285,9 +297,25 @@ input[type="date"]::placeholder {
     }
 }
 
+@media (min-width: 768px) {
+    .todos-input-box input[type=email] {
+        max-width: 50%; 
+        margin-left: 8.5px;
+    }
+
+    .email-note {
+        max-width: 50%; 
+    }
+}
+
 @media (max-width: 768px) {
     .todo-input-box {
         width: 100%;
+    }
+
+    .todos-input-box input[type=email], 
+    .email-note {
+        width: 100%; 
     }
 
     #task, #status, #deadline {
@@ -318,6 +346,10 @@ input[type="date"]::placeholder {
 
     .edit-input-box {
         width: 150px; 
+    }
+
+    .email-note {
+        font-size: 12px;
     }
 }
 

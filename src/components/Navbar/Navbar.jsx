@@ -15,6 +15,8 @@ export default function Navbar({ name, isAuthenticated, handleLogout }) {
                         <div id="authenticated-div">
                             <Link to='/'><span id='todo-app-logo'>TodoApp</span></Link>
                             <div>
+                                <Link to='/privacy-policy' id='privacy-policy'>Privacy Policy</Link>
+                                <Link to='/terms-of-service' id='terms-of-service'>Terms of Service</Link>
                                 <span id='display-name'>{name}</span>
                                 <button onClick={handleLogout} id='logout-btn'>Logout</button>
                             </div>
@@ -23,6 +25,8 @@ export default function Navbar({ name, isAuthenticated, handleLogout }) {
                         <div id="non-authenticated-div">
                             <Link to='/'><span id='todo-app-logo'>TodoApp</span></Link>
                             <div>
+                                <Link to='/privacy-policy' id='privacy-policy'>Privacy Policy</Link>
+                                <Link to='/terms-of-service' id='terms-of-service'>Terms of Service</Link>
                                 <Link to='/register' className='navbar-logo'>Register</Link>
                                 <span>/</span>
                                 <Link to='/login' className='navbar-logo'>Login</Link>

@@ -1,0 +1,135 @@
+.privacy-policy-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: 2rem auto;
+    border-radius: 5px;
+    line-height: 1.6;
+}
+
+li {
+    /* list-style: none; */
+}
+
+.section {
+    margin-top: 10px;
+}
+
+.privacy-policy {
+    width: 100%;
+    padding: 50px;
+    /* background-color: rebeccapurple; */
+}
+
+@media (prefers-color-scheme: light) {
+    .privacy-policy-container {
+        color: #333333;
+        background-color: #f9f9f9;
+    }
+
+    h1 {
+        color: #000000;
+    }
+
+    h2 {
+        color: #555555;
+    }
+
+    p {
+        color: #333333;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .privacy-policy-container {
+        color: #e0e0e0;
+        background-color: #121212;
+    }
+
+    h1 {
+        color: #ffffff;
+    }
+
+    h2 {
+        color: #bbbbbb;
+    }
+
+    p {
+        color: #e0e0e0;
+    }
+}
+
+@media (max-width: 1200px) {
+    .privacy-policy-container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 992px) {
+    .privacy-policy-container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    p {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .privacy-policy-container {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 1.4em;
+    }
+
+    h2 {
+        font-size: 1.1em;
+    }
+
+    ul {
+        padding-left: 15px;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .privacy-policy-container {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    h2 {
+        font-size: 1em;
+    }
+
+    p {
+        margin-bottom: 8px;
+    }
+
+    ul {
+        padding-left: 10px;
+    }
+}

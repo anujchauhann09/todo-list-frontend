@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 export default function TodoList() {
     const [todoList, setTodoList] = useState([])
@@ -17,7 +17,8 @@ export default function TodoList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [token, setToken] = useState("")
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
+    const [newEmail, setNewEmail] = useState("")
 
     /*
     useEffect(() => {
@@ -202,6 +203,8 @@ export default function TodoList() {
                         onChange={(e) => {
                             setNewDeadline(e.target.value);
                         }} />
+                    <input type="email" placeholder='Your Email' className='todo-input-box' id='email' value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
+                    <p className="email-note">Note: We will use this email to remind you about the task on the deadline date.</p>
                     <button id='add-todo' onClick={addTask}>Add Todo</button>
                 </div>
                 <div className="todos-list">
