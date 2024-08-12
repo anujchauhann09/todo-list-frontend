@@ -3,10 +3,10 @@
     --text-color: black;
     --input-background-color: white;
     --input-text-color: black;
-    --button-background-color: #c9d42b;
-    --button-text-color: white;
-    --button-hover-background-color: white;
-    --button-hover-text-color: #c9d42b;
+    --button-background-color: rgb(116, 218, 218);
+    --button-text-color: black;
+    --button-hover-background-color: black;
+    --button-hover-text-color: rgb(116, 218, 218);
     --form-container-bg: white;
 }
 
@@ -14,13 +14,13 @@
     :root {
         --background-color: #333;
         --text-color: #f4f4f4;
-        --input-background-color: #555;
+        --input-background-color: #444444;
         --input-text-color: #f4f4f4;
-        --button-background-color: #444;
-        --button-text-color: #f4f4f4;
-        --button-hover-background-color: #666;
-        --button-hover-text-color: #f4f4f4;
-        --form-container-bg: #333;
+        --button-background-color: rgb(116, 218, 218);
+        --button-text-color: black;
+        --button-hover-background-color: black;
+        --button-hover-text-color: rgb(116, 218, 218);
+        --form-container-bg: #121212;
     }
 }
 

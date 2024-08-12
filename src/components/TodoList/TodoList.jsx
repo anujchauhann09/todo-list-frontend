@@ -11,6 +11,7 @@ export default function TodoList() {
     const [editedTask, setEditedTask] = useState("")
     const [editedStatus, setEditedStatus] = useState("")
     const [editedDeadline, setEditedDeadline] = useState("")
+    const [editedEmail, setEditedEmail] = useState("")
     const [newTask, setNewTask] = useState("")
     const [newStatus, setNewStatus] = useState("")
     const [newDeadline, setNewDeadline] = useState("")
@@ -87,6 +88,7 @@ export default function TodoList() {
             setEditedTask("");
             setEditedStatus("");
             setEditedDeadline("");
+            setEditedEmail("");
             return
         }
 
@@ -94,10 +96,11 @@ export default function TodoList() {
         setEditedTask(rowData.task)
         setEditedStatus(rowData.status)
         setEditedDeadline(rowData.deadline || "")
+        setEditedEmail(rowData.email)
     }
 
     const addTask = () => {
-        if (!newTask || !newStatus || !newDeadline) {
+        if (!newTask || !newStatus || !newDeadline || !newEmail) {
             // alert(`All fields must be filled out.`)
             toast.error("All fields must be filled out.")
             return
@@ -111,7 +114,8 @@ export default function TodoList() {
         axios.post('https://todo-list-backend-bian.onrender.com/addTodoList', {
             task: newTask,
             status: newStatus,
-            deadline: newDeadline
+            deadline: newDeadline,
+            email: newEmail
         }, {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -128,6 +132,7 @@ export default function TodoList() {
                 setNewTask("")
                 setNewStatus("")
                 setNewDeadline("")
+                setNewEmail("")
             })
             .catch(err => {
                 // alert(`Error in adding todo, Please add again`)
@@ -160,10 +165,11 @@ export default function TodoList() {
         const editedData = {
             task: editedTask,
             status: editedStatus,
-            deadline: editedDeadline
+            deadline: editedDeadline,
+            email: editedEmail
         }
 
-        if (!editedTask || !editedStatus || !editedDeadline) {
+        if (!editedTask || !editedStatus || !editedDeadline || !editedEmail) {
             // alert("All fields must be filled out.")
             toast.error("All fields must be filled out.")
             return
@@ -184,6 +190,7 @@ export default function TodoList() {
                 setEditedTask("")
                 setEditedStatus("")
                 setEditedDeadline("")
+                setEditedEmail("")
                 // window.location.reload()
                 // navigate('/')
             })
