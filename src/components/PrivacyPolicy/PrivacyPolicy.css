@@ -1,6 +1,6 @@
 .privacy-policy-container {
     padding: 20px;
-    max-width: 900px;
+    width: 90%;
     margin: 2rem auto;
     border-radius: 5px;
     line-height: 1.6;
@@ -63,6 +63,10 @@ li {
         padding: 15px;
     }
 
+    .privacy-policy {
+        padding: 45px;
+    }
+
     h1 {
         font-size: 1.8em;
     }
@@ -75,6 +79,10 @@ li {
 @media (max-width: 992px) {
     .privacy-policy-container {
         padding: 10px;
+    }
+
+    .privacy-policy {
+        padding: 40px;
     }
 
     h1 {
@@ -93,6 +101,10 @@ li {
 @media (max-width: 768px) {
     .privacy-policy-container {
         padding: 8px;
+    }
+
+    .privacy-policy {
+        padding: 30px;
     }
 
     h1 {
@@ -115,6 +127,10 @@ li {
 @media (max-width: 576px) {
     .privacy-policy-container {
         padding: 5px;
+    }
+
+    .privacy-policy {
+        padding: 20px;
     }
 
     h1 {

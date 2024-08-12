@@ -18,18 +18,18 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background-color: #333;
+        --background-color: #121212;
         --text-color: #f4f4f4;
-        --input-background-color: #555;
+        --input-background-color: #444444;
         --input-text-color: #f4f4f4;
-        --button-background-color: #444;
+        --button-background-color: #c9d42b;
         --button-text-color: #f4f4f4;
-        --button-hover-background-color: #666;
-        --button-hover-text-color: #f4f4f4;
-        --table-heading-background-color: #444;
-        --table-heading-text-color: #f4f4f4;
-        --table-cell-background-color: #555;
-        --table-cell-text-color: #f4f4f4;
+        --button-hover-background-color: white;
+        --button-hover-text-color: #c9d42b;
+        --table-heading-background-color: #69b6b6;
+        --table-heading-text-color: white;
+        --table-cell-background-color: #f4f4f4;
+        --table-cell-text-color: black;
         --save-btn-background-color: #005f00;
         --delete-btn-background-color: #800000;
         --edit-btn-background-color: #00aaff;

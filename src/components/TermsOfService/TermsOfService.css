@@ -1,6 +1,6 @@
 .terms-of-service-container {
     padding: 20px;
-    max-width: 900px;
+    width: 90%;
     margin: 2rem auto;
     line-height: 1.6;
     border-radius: 5px;
@@ -72,9 +72,33 @@ a:hover {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .terms-of-service-container {
         padding: 15px;
+    }
+
+    .terms-of-service {
+        padding: 45px;
+    }
+}
+
+@media (max-width: 992px) {
+    .terms-of-service-container {
+        padding: 10px;
+    }
+
+    .terms-of-service {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .terms-of-service-container {
+        padding: 8px;
+    }
+
+    .terms-of-service {
+        padding: 30px;
     }
 
     h1 {
@@ -88,7 +112,11 @@ a:hover {
 
 @media (max-width: 480px) {
     .terms-of-service-container {
-        padding: 10px;
+        padding: 5px;
+    }
+
+    .terms-of-service {
+        padding: 20px;
     }
 
     h1 {
