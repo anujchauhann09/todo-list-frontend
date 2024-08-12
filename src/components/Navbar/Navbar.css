@@ -1,5 +1,5 @@
 :root {
-    --navbar-bg: white;
+    /* --navbar-bg: white; */
     --btn-bg: #c9d42b;
     --btn-border: rgb(197, 197, 197);
     --text-color: black;
@@ -8,7 +8,7 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --navbar-bg: #222;
+        /* --navbar-bg: #222; */
         --btn-bg: #444;
         --btn-border: #555;
         --text-color: #f4f4f4;

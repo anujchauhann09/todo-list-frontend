@@ -12,6 +12,7 @@
       html, body {
         height: 100%;
       }
+
       .background-wrapper {
         min-height: 100vh; 
         background: linear-gradient(90deg, hsla(169, 76%, 48%, 1) 0%, hsla(67, 87%, 82%, 1) 100%);
@@ -21,6 +22,20 @@
         display: flex;
         flex-direction: column;
       }
+
+      @media (prefers-color-scheme: dark) {
+        .background-wrapper {
+          background: #000; 
+          color: #f4f4f4; 
+        }
+      }
+
+      @media (prefers-color-scheme: light) {
+        .background-wrapper {
+          background: linear-gradient(90deg, hsla(169, 76%, 48%, 1) 0%, hsla(67, 87%, 82%, 1) 100%);
+        }
+      }
+
       #root {
         flex: 1; 
       }
