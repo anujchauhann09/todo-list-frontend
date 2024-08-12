@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function TodoList() {
     const [todoList, setTodoList] = useState([])
@@ -16,6 +17,7 @@ export default function TodoList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [token, setToken] = useState("")
+    const navigate = useNavigate()
 
     useEffect(() => {
         const userToken = localStorage.getItem('token')
@@ -86,7 +88,8 @@ export default function TodoList() {
             .then(res => {
                 // console.log(res)
                 // toast.success("Todo added successfully!")
-                window.location.reload()
+                // window.location.reload()
+                navigate('/')
             })
             .catch(err => {
                 // alert(`Error in adding todo, Please add again`)
@@ -105,7 +108,8 @@ export default function TodoList() {
             .then(result => {
                 // console.log(result)
                 // toast.success("Todo deleted successfully!")
-                window.location.reload()
+                // window.location.reload()
+                navigate('/')
             })
             .catch(error => {
                 // alert(`Error in deleting todo, Please delete again`)
@@ -140,7 +144,8 @@ export default function TodoList() {
                 setEditedTask("")
                 setEditedStatus("")
                 setEditedDeadline("")
-                window.location.reload()
+                // window.location.reload()
+                navigate('/')
             })
             .catch(err => {
                 // alert(`Error in saving todo, Please save again`)

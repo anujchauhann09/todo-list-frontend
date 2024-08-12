@@ -18,7 +18,7 @@
 
 .navbar {
     width: 100%;
-    background-color: var(--navbar-bg);
+    /* background-color: var(--navbar-bg); */
 }
 
 .navbar-container {
