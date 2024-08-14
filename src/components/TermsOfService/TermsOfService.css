@@ -113,6 +113,7 @@ a:hover {
 @media (max-width: 480px) {
     .terms-of-service-container {
         padding: 5px;
+        width: 100%;
     }
 
     .terms-of-service {

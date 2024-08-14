@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-// import { useNavigate } from 'react-router-dom';
 
 export default function TodoList() {
     const [todoList, setTodoList] = useState([])
@@ -18,43 +17,14 @@ export default function TodoList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [token, setToken] = useState("")
-    // const navigate = useNavigate()
     const [newEmail, setNewEmail] = useState("")
-
-    /*
-    useEffect(() => {
-        const userToken = localStorage.getItem('token')
-        if (userToken) {
-            setToken(userToken)
-            axios.get('https://todo-list-backend-bian.onrender.com/auth/getTodoList', {
-                headers: {
-                    'Authorization': `Bearer ${userToken}`,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(result => {
-                    const todos = result.data.map(todo => ({
-                        ...todo,
-                        deadline: new Date(todo.deadline).toLocaleDateString()
-                    }))
-                    setTodoList(todos)
-                    setLoading(false)
-                })
-                .catch(err => {
-                    // alert(`Error in loading todos, Please refresh the page`)
-                    toast.error("Error loading todos, Please refresh the page")
-                    setError("Error loading todos")
-                })
-        }
-    }, [])
-    */
 
     const fetchTodoList = () => {
         const userToken = localStorage.getItem('token')
         if (userToken) {
             setToken(userToken)
             axios.get('https://todo-list-backend-bian.onrender.com/auth/getTodoList', {
+            // axios.get('http://127.0.0.1:5173/getTodoList', {
                 headers: {
                     'Authorization': `Bearer ${userToken}`,
                     'Accept': 'application/json',
@@ -112,6 +82,7 @@ export default function TodoList() {
         }
 
         axios.post('https://todo-list-backend-bian.onrender.com/addTodoList', {
+        // axios.post('http://127.0.0.1:5173/addTodoList', {
             task: newTask,
             status: newStatus,
             deadline: newDeadline,

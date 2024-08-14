@@ -127,6 +127,7 @@ li {
 @media (max-width: 576px) {
     .privacy-policy-container {
         padding: 5px;
+        width: 100%;
     }
 
     .privacy-policy {

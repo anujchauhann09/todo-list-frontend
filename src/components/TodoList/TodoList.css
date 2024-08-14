@@ -20,7 +20,7 @@
     :root {
         --background-color: #121212;
         --text-color: #f4f4f4;
-        --input-background-color: #444444;
+        --input-background-color: #2e2c2c;
         --input-text-color: #f4f4f4;
         --button-background-color: #c9d42b;
         --button-text-color: #f4f4f4;
@@ -271,8 +271,8 @@ input[type="date"]::placeholder {
     padding: 0.8rem;
     border-radius: 5px;
     border: 1px solid #ddd;
-    background-color: var(--input-background-color);
-    color: var(--input-text-color);
+    background-color: white;
+    color: black;
 }
 
 @media (max-width: 1200px) {
