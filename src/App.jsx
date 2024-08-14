@@ -7,6 +7,8 @@ import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy'
 import TermsOfService from './components/TermsOfService/TermsOfService'
+import About from './components/About/About'
+import Contact from './components/Contact/Contact'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -72,6 +74,8 @@ function App() {
           setIsAuthenticated(true);
           setName(localStorage.getItem('name'))
       }} />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
     </>
   )
