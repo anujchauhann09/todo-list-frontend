@@ -1,5 +1,6 @@
 import React from 'react';
 import './TermsOfService.css';
+import {Link} from 'react-router-dom'
 
 const TermsOfService = () => {
     return (
@@ -22,7 +23,7 @@ const TermsOfService = () => {
                     </ul>
 
                     <h2>3. Privacy and Data Protection</h2>
-                    <p>We value your privacy and are committed to protecting your personal information. Our <a href="/privacy-policy">Privacy Policy</a> provides detailed information on how we collect, use, and safeguard your data.</p>
+                    <p>We value your privacy and are committed to protecting your personal information. Our <Link to="/privacy-policy">Privacy Policy</Link> provides detailed information on how we collect, use, and safeguard your data.</p>
 
                     <h2>4. Intellectual Property</h2>
                     <p>All content and materials provided by the Todo App, including but not limited to text, graphics, logos, and software, are the property of the Todo App or its licensors and are protected by intellectual property laws.</p>

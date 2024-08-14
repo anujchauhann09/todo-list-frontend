@@ -1,24 +1,25 @@
 :root {
-    /* --navbar-bg: white; */
     --btn-bg: #c9d42b;
     --btn-border: rgb(197, 197, 197);
     --text-color: black;
     --logo-color: black;
+    --background-color: white;
+    --text-color: black;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        /* --navbar-bg: #222; */
         --btn-bg: #444;
         --btn-border: #555;
         --text-color: #f4f4f4;
         --logo-color: #fff;
+        --background-color: black;
+        --text-color: white;
     }
 }
 
 .navbar {
     width: 100%;
-    /* background-color: var(--navbar-bg); */
 }
 
 .navbar-container {
@@ -29,6 +30,26 @@
     align-items: center;
     font-size: 1.4rem;
     gap: 5px;
+}
+
+.navbar-links.close {
+    display: none;
+}
+
+.navbar-links.open {
+    position: fixed;
+    top: 0;
+    /* right: -100%;  */
+    width: 30%;
+    height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    right: 0;
 }
 
 #privacy-policy {
@@ -52,15 +73,16 @@
 #authenticated-div {
     display: flex;
     gap: 5px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
 }
 
-#authenticated-div > div {
+#sub-authenticated-div {
     display: flex;
-    gap: 5px;
+    justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 #todo-app-logo {
@@ -70,9 +92,16 @@
 
 #non-authenticated-div {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
+}
+
+#sub-non-authenticated-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
 #display-name {
@@ -80,11 +109,25 @@
     color: var(--text-color);
 }
 
+#menu-toggle {
+    display: none;
+    position: fixed;
+    top: 23px;
+    right: 10px;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    z-index: 1100;
+    padding: 10px;
+}
+
 @media (max-width: 1200px) {
     .navbar-container {
         font-size: 1.3rem;
     }
-    
+
     #todo-app-logo {
         font-size: 1.7rem;
     }
@@ -98,11 +141,40 @@
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .navbar-container {
         font-size: 1.1rem;
     }
-    
+}
+
+@media (min-width: 900px) {
+    .navbar-links.close {
+        display: block;
+    }
+}
+
+@media (max-width: 900px) {
+    #menu-toggle {
+        display: block;
+    }
+
+    .navbar-links {
+        z-index: 1000;
+    }
+
+    #non-authenticated-div {
+        margin-top: 4rem;
+    }
+
+    #sub-non-authenticated-div {
+        flex-direction: column-reverse;
+        padding: 10px;
+    }
+
+    .navbar-container {
+        font-size: 1.1rem;
+    }
+
     #todo-app-logo {
         font-size: 1.5rem;
     }
@@ -116,11 +188,21 @@
     }
 }
 
+@media (max-width: 700px) {
+    .navbar-links.open {
+        width: 35%;
+    }
+}
+
 @media (max-width: 600px) {
     .navbar-container {
         font-size: 1rem;
     }
-    
+
+    .navbar-links.open {
+        width: 40%;
+    }
+
     #todo-app-logo {
         font-size: 1.3rem;
     }
@@ -131,5 +213,11 @@
 
     #logout-btn {
         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-links.open {
+        width: 45%;
     }
 }
