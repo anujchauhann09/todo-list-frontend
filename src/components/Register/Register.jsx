@@ -11,8 +11,34 @@ export default function Register() {
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
 
+    const validateName = (name) => {
+        return name.trim().length > 0
+    }
+
+    const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    }
+
+    const validatePassword = (password) => {
+        return password.length >= 8
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        if(!name || !email || !password) {
+            toast.error("All fields must be filled out.");
+            return;
+        } else if (!validateName(name)) {
+            toast.error("Name cannot be empty.");
+            return;
+        } else if (!validateEmail(email)) {
+            toast.error("Invalid email format.");
+            return;
+        } else if (!validatePassword(password)) {
+            toast.error("Password must be at least 8 characters long.");
+            return;
+        }
 
         axios.post('https://todo-list-backend-bian.onrender.com/auth/register', {email, password, name})
             .then(res => {

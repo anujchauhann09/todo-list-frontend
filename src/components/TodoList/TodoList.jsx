@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useEffect, useState, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 export default function TodoList() {
     const [todoList, setTodoList] = useState([]);
@@ -73,6 +76,20 @@ export default function TodoList() {
         }));
     };
 
+    const validateDate = (date) => {
+        const today = new Date()
+        const inputDate = new Date(date)
+        return inputDate >= today
+    }
+
+    const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    }
+
+    const validateTask = (task) => {
+        return task.trim().length > 0
+    }
+
     const addTask = () => {
         const { newTask, newStatus, newDeadline, newEmail } = state;
 
@@ -81,6 +98,15 @@ export default function TodoList() {
             return;
         } else if (!token) {
             toast.error("Please Register/Login first");
+            return;
+        } else if (!validateDate(newDeadline)) {
+            toast.error("Deadline must be a future date.");
+            return;
+        } else if (!validateEmail(newEmail)) {
+            toast.error("Invalid email format.");
+            return;
+        } else if (!validateTask(newTask)) {
+            toast.error("Task cannot be empty.");
             return;
         }
 
@@ -136,6 +162,15 @@ export default function TodoList() {
         if (!editedTask || !editedStatus || !editedDeadline || !editedEmail) {
             toast.error("All fields must be filled out.");
             return;
+        } else if (!validateDate(editedDeadline)) {
+            toast.error("Deadline must be a future date.");
+            return;
+        } else if (!validateEmail(editedEmail)) {
+            toast.error("Invalid email format.");
+            return;
+        } else if (!validateTask(editedTask)) {
+            toast.error("Task cannot be empty.");
+            return;
         }
 
         axios.post(`https://todo-list-backend-bian.onrender.com/updateTodoList/${id}`, {
@@ -166,6 +201,13 @@ export default function TodoList() {
             });
     };
 
+    const handleDateChange = (date, field) => {
+        setState(prevState => ({
+            ...prevState,
+            [field]: date
+        }))
+    }
+
     return (
         <>
             <div className="todo-list-container">
@@ -184,6 +226,7 @@ export default function TodoList() {
                         value={state.newStatus}
                         onChange={(e) => setState(prevState => ({ ...prevState, newStatus: e.target.value }))}
                     >
+                        <option value="select-status">Select Status</option>
                         <option value="pending">Pending</option>
                         <option value="in-progress">In Progress</option>
                         <option value="completed">Completed</option>
@@ -262,6 +305,7 @@ export default function TodoList() {
                                                             onChange={(e) => setState(prevState => ({ ...prevState, editedStatus: e.target.value }))}
                                                             className="edit-input-box" id="edit-status"
                                                         >
+                                                            <option value="select-status">Select Status</option>
                                                             <option value="pending">Pending</option>
                                                             <option value="in-progress">In Progress</option>
                                                             <option value="completed">Completed</option>

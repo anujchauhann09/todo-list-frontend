@@ -10,8 +10,27 @@ export default function Login({ onLogin }) {
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
 
+    const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    }
+
+    const validatePassword = (password) => {
+        return password.length >= 8
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        if (!email || !password) {
+            toast.error("Email and password cannot be empty.");
+            return;
+        } else if (!validateEmail(email)) {
+            toast.error("Invalid email format.");
+            return;
+        } else if (!validatePassword(password)) {
+            toast.error("Password must be at least 8 characters long.");
+            return;
+        }
 
         axios.post('https://todo-list-backend-bian.onrender.com/auth/login', {email, password})
         // axios.post('http://127.0.0.1:5173/auth/login', {email, password})
