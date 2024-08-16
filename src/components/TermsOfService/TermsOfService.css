@@ -4,8 +4,8 @@
     margin: 2rem auto;
     line-height: 1.6;
     border-radius: 5px;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: white;
+    color: black;
 }
 
 .section {
@@ -32,7 +32,7 @@ section {
     margin: 20px 0;
 }
 
-h2 {
+h1 {
     font-size: 1.8em;
     margin-top: 20px;
     color: #333;

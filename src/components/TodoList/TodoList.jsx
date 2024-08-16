@@ -3,9 +3,6 @@ import axios from 'axios';
 import { useEffect, useState, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-
 
 export default function TodoList() {
     const [todoList, setTodoList] = useState([]);
@@ -78,7 +75,9 @@ export default function TodoList() {
 
     const validateDate = (date) => {
         const today = new Date()
+        today.setHours(0, 0, 0, 0) // Set time to 00:00:00 for today
         const inputDate = new Date(date)
+        inputDate.setHours(0, 0, 0, 0) // Set time to 00:00:00 for the input date
         return inputDate >= today
     }
 
@@ -88,6 +87,10 @@ export default function TodoList() {
 
     const validateTask = (task) => {
         return task.trim().length > 0
+    }
+
+    const validateStatus =(status) => {
+        return status === 'Select Status'
     }
 
     const addTask = () => {
@@ -107,6 +110,10 @@ export default function TodoList() {
             return;
         } else if (!validateTask(newTask)) {
             toast.error("Task cannot be empty.");
+            return;
+        }
+        else if (validateStatus(newStatus)) {
+            toast.error("Invalid status.");
             return;
         }
 
@@ -171,6 +178,9 @@ export default function TodoList() {
         } else if (!validateTask(editedTask)) {
             toast.error("Task cannot be empty.");
             return;
+        } else if (validateStatus(editedStatus)) {
+            toast.error("Invalid status.");
+            return;
         }
 
         axios.post(`https://todo-list-backend-bian.onrender.com/updateTodoList/${id}`, {
@@ -201,13 +211,6 @@ export default function TodoList() {
             });
     };
 
-    const handleDateChange = (date, field) => {
-        setState(prevState => ({
-            ...prevState,
-            [field]: date
-        }))
-    }
-
     return (
         <>
             <div className="todo-list-container">
@@ -226,10 +229,10 @@ export default function TodoList() {
                         value={state.newStatus}
                         onChange={(e) => setState(prevState => ({ ...prevState, newStatus: e.target.value }))}
                     >
-                        <option value="select-status">Select Status</option>
-                        <option value="pending">Pending</option>
-                        <option value="in-progress">In Progress</option>
-                        <option value="completed">Completed</option>
+                        <option value="Select Status">Select Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
                     </select>
                     <input
                         type="date"
@@ -238,7 +241,7 @@ export default function TodoList() {
                         id='deadline'
                         value={state.newDeadline}
                         onChange={(e) => setState(prevState => ({ ...prevState, newDeadline: e.target.value }))}
-                    />
+                    /> 
                     <input
                         type="email"
                         placeholder='Your Email'

@@ -22,8 +22,8 @@ li {
 
 @media (prefers-color-scheme: light) {
     .privacy-policy-container {
-        color: #333333;
-        background-color: #f9f9f9;
+        background-color: white;
+        color: black;
     }
 
     h1 {
