@@ -71,7 +71,7 @@ function App() {
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
         <Route path='/terms-of-service' element={<TermsOfService />} />
         <Route path='/login' element={<Login onLogin={() => {
-          setIsAuthenticated(true);
+          setIsAuthenticated(true)
           setName(localStorage.getItem('name'))
       }} />} />
         <Route path='/about' element={<About />} />

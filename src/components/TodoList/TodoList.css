@@ -71,6 +71,22 @@ input[type="date"]::placeholder {
     color: var(--input-text-color);
 }
 
+input[type="date"]::-webkit-input-placeholder {
+    color: var(--input-text-color);
+}
+
+input[type="date"]::-moz-placeholder {
+    color: var(--input-text-color);
+}
+
+input[type="date"]::placeholder {
+    color: var(--input-text-color);
+}
+
+input[type="date"]:-ms-input-placeholder {
+    color: var(--input-text-color);
+}
+
 #task {
     width: calc(50% - 1rem);
 }

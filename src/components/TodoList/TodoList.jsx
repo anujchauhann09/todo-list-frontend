@@ -1,32 +1,31 @@
-import './TodoList.css'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import './TodoList.css';
+import axios from 'axios';
+import { useEffect, useState, useCallback } from 'react';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function TodoList() {
-    const [todoList, setTodoList] = useState([])
-    const [editableId, setEditableId] = useState(null)
-    const [editedTask, setEditedTask] = useState("")
-    const [editedStatus, setEditedStatus] = useState("")
-    const [editedDeadline, setEditedDeadline] = useState("")
-    const [editedEmail, setEditedEmail] = useState("")
-    const [newTask, setNewTask] = useState("")
-    const [newStatus, setNewStatus] = useState("")
-    const [newDeadline, setNewDeadline] = useState("")
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
-    const [token, setToken] = useState("")
-    const [newEmail, setNewEmail] = useState("")
+    const [todoList, setTodoList] = useState([]);
+    const [editableId, setEditableId] = useState(null);
+    const [state, setState] = useState({
+        newTask: "",
+        newStatus: "",
+        newDeadline: "",
+        newEmail: "",
+        editedTask: "",
+        editedStatus: "",
+        editedDeadline: "",
+        editedEmail: "",
+    });
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [token, setToken] = useState(() => localStorage.getItem('token') || "");
 
-    const fetchTodoList = () => {
-        const userToken = localStorage.getItem('token')
-        if (userToken) {
-            setToken(userToken)
+    const fetchTodoList = useCallback(() => {
+        if (token) {
             axios.get('https://todo-list-backend-bian.onrender.com/auth/getTodoList', {
-            // axios.get('http://127.0.0.1:5173/getTodoList', {
                 headers: {
-                    'Authorization': `Bearer ${userToken}`,
+                    'Authorization': `Bearer ${token}`,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
@@ -35,54 +34,57 @@ export default function TodoList() {
                     const todos = result.data.map(todo => ({
                         ...todo,
                         deadline: new Date(todo.deadline).toLocaleDateString()
-                    }))
-                    setTodoList(todos)
-                    setLoading(false)
+                    }));
+                    setTodoList(todos);
+                    setLoading(false);
                 })
                 .catch(err => {
-                    // alert(`Error in loading todos, Please refresh the page`)
-                    toast.error("Error loading todos, Please refresh the page")
-                    setError("Error loading todos")
-                })
+                    toast.error("Error loading todos, Please refresh the page");
+                    setError("Error loading todos");
+                });
         }
-    }
+    }, [token]);
 
     useEffect(() => {
-        fetchTodoList()
-    }, [])
+        fetchTodoList();
+    }, [fetchTodoList]);
 
     const toggleEditable = (id) => {
-        const rowData = todoList.find(data => data._id === id)
+        const rowData = todoList.find(data => data._id === id);
         if (!rowData) {
             setEditableId(null);
-            setEditedTask("");
-            setEditedStatus("");
-            setEditedDeadline("");
-            setEditedEmail("");
-            return
+            setState(prevState => ({
+                ...prevState,
+                editedTask: "",
+                editedStatus: "",
+                editedDeadline: "",
+                editedEmail: ""
+            }));
+            return;
         }
 
-        setEditableId(id)
-        setEditedTask(rowData.task)
-        setEditedStatus(rowData.status)
-        setEditedDeadline(rowData.deadline || "")
-        setEditedEmail(rowData.email)
-    }
+        setEditableId(id);
+        setState(prevState => ({
+            ...prevState,
+            editedTask: rowData.task,
+            editedStatus: rowData.status,
+            editedDeadline: rowData.deadline || "",
+            editedEmail: rowData.email
+        }));
+    };
 
     const addTask = () => {
+        const { newTask, newStatus, newDeadline, newEmail } = state;
+
         if (!newTask || !newStatus || !newDeadline || !newEmail) {
-            // alert(`All fields must be filled out.`)
-            toast.error("All fields must be filled out.")
-            return
-        }
-        else if (!token) {
-            // alert(`Please Register/Login first`)
-            toast.error("Please Register/Login first")
-            return
+            toast.error("All fields must be filled out.");
+            return;
+        } else if (!token) {
+            toast.error("Please Register/Login first");
+            return;
         }
 
         axios.post('https://todo-list-backend-bian.onrender.com/addTodoList', {
-        // axios.post('http://127.0.0.1:5173/addTodoList', {
             task: newTask,
             status: newStatus,
             deadline: newDeadline,
@@ -94,94 +96,114 @@ export default function TodoList() {
                 'Content-Type': 'application/json'
             }
         })
-            .then(res => {
-                // console.log(res)
-                // toast.success("Todo added successfully!")
-                // window.location.reload()
-                // navigate('/')
-                fetchTodoList()
-                setNewTask("")
-                setNewStatus("")
-                setNewDeadline("")
-                setNewEmail("")
+            .then(() => {
+                fetchTodoList();
+                setState({
+                    newTask: "",
+                    newStatus: "",
+                    newDeadline: "",
+                    newEmail: "",
+                    editedTask: "",
+                    editedStatus: "",
+                    editedDeadline: "",
+                    editedEmail: ""
+                });
             })
-            .catch(err => {
-                // alert(`Error in adding todo, Please add again`)
-                toast.error("Error adding todo, Please try again")
-            })
-    }
+            .catch(() => {
+                toast.error("Error adding todo, Please try again");
+            });
+    };
 
     const deleteTask = (id) => {
-        axios.delete('https://todo-list-backend-bian.onrender.com/deleteTodoList/' + id, {
+        axios.delete(`https://todo-list-backend-bian.onrender.com/deleteTodoList/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         })
-            .then(result => {
-                // console.log(result)
-                // toast.success("Todo deleted successfully!")
-                // window.location.reload()
-                // navigate('/')
-                fetchTodoList()
+            .then(() => {
+                fetchTodoList();
             })
-            .catch(error => {
-                // alert(`Error in deleting todo, Please delete again`)
-                toast.error("Error deleting todo, Please try again")
-            })
-    }
+            .catch(() => {
+                toast.error("Error deleting todo, Please try again");
+            });
+    };
 
     const saveEditedTask = (id) => {
-        const editedData = {
+        const { editedTask, editedStatus, editedDeadline, editedEmail } = state;
+
+        if (!editedTask || !editedStatus || !editedDeadline || !editedEmail) {
+            toast.error("All fields must be filled out.");
+            return;
+        }
+
+        axios.post(`https://todo-list-backend-bian.onrender.com/updateTodoList/${id}`, {
             task: editedTask,
             status: editedStatus,
             deadline: editedDeadline,
             email: editedEmail
-        }
-
-        if (!editedTask || !editedStatus || !editedDeadline || !editedEmail) {
-            // alert("All fields must be filled out.")
-            toast.error("All fields must be filled out.")
-            return
-        }
-
-        axios.post('https://todo-list-backend-bian.onrender.com/updateTodoList/' + id, editedData, {
+        }, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         })
-            .then(result => {
-                // console.log(result)
-                // toast.success("Todo updated successfully!")
-                fetchTodoList()
-                setEditableId(null)
-                setEditedTask("")
-                setEditedStatus("")
-                setEditedDeadline("")
-                setEditedEmail("")
-                // window.location.reload()
-                // navigate('/')
+            .then(() => {
+                fetchTodoList();
+                setEditableId(null);
+                setState(prevState => ({
+                    ...prevState,
+                    editedTask: "",
+                    editedStatus: "",
+                    editedDeadline: "",
+                    editedEmail: ""
+                }));
             })
-            .catch(err => {
-                // alert(`Error in saving todo, Please save again`)
-                toast.error("Error saving todo, Please try again")
-            })
-    }
+            .catch(() => {
+                toast.error("Error saving todo, Please try again");
+            });
+    };
 
     return (
         <>
             <div className="todo-list-container">
                 <div className="todos-input-box">
-                    <input type="text" placeholder='Enter Todo' className='todo-input-box' id='task' value={newTask} onChange={(e) => setNewTask(e.target.value)} />
-                    <input type="text" placeholder='Enter Status' className='todo-input-box' id='status' value={newStatus} onChange={(e) => setNewStatus(e.target.value)} />
-                    <input type="date" placeholder='Deadline' className='todo-input-box' id='deadline' value={newDeadline}
-                        onChange={(e) => {
-                            setNewDeadline(e.target.value);
-                        }} />
-                    <input type="email" placeholder='Your Email' className='todo-input-box' id='email' value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
+                    <input
+                        type="text"
+                        placeholder='Enter Todo'
+                        className='todo-input-box'
+                        id='task'
+                        value={state.newTask}
+                        onChange={(e) => setState(prevState => ({ ...prevState, newTask: e.target.value }))}
+                    />
+                    <select
+                        className='todo-input-box'
+                        id='status'
+                        value={state.newStatus}
+                        onChange={(e) => setState(prevState => ({ ...prevState, newStatus: e.target.value }))}
+                    >
+                        <option value="pending">Pending</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    <input
+                        type="date"
+                        placeholder='Deadline'
+                        className='todo-input-box'
+                        id='deadline'
+                        value={state.newDeadline}
+                        onChange={(e) => setState(prevState => ({ ...prevState, newDeadline: e.target.value }))}
+                    />
+                    <input
+                        type="email"
+                        placeholder='Your Email'
+                        className='todo-input-box'
+                        id='email'
+                        value={state.newEmail}
+                        onChange={(e) => setState(prevState => ({ ...prevState, newEmail: e.target.value }))}
+                    />
                     <p className="email-note">Note: We will use this email to remind you about the task on the deadline date.</p>
                     <button id='add-todo' onClick={addTask}>Add Todo</button>
                 </div>
@@ -222,36 +244,59 @@ export default function TodoList() {
                                             <tr key={data._id} id="todo-list-content">
                                                 <td className="todo-list-sub-content" id='todo-list-task-content'>
                                                     {editableId === data._id ? (
-                                                        <input type="text" value={editedTask} onChange={(e) => setEditedTask(e.target.value)} id="edit-task" className="edit-input-box" />
+                                                        <input
+                                                            type="text"
+                                                            value={state.editedTask}
+                                                            onChange={(e) => setState(prevState => ({ ...prevState, editedTask: e.target.value }))}
+                                                            id="edit-task"
+                                                            className="edit-input-box"
+                                                        />
                                                     ) : (
                                                         data.task
                                                     )}
                                                 </td>
                                                 <td className="todo-list-sub-content" id='todo-list-status-content'>
                                                     {editableId === data._id ? (
-                                                        <input type="text" value={editedStatus} onChange={(e) => setEditedStatus(e.target.value)} id="edit-status" className="edit-input-box" />
+                                                        <select
+                                                            value={state.editedStatus}
+                                                            onChange={(e) => setState(prevState => ({ ...prevState, editedStatus: e.target.value }))}
+                                                            className="edit-input-box" id="edit-status"
+                                                        >
+                                                            <option value="pending">Pending</option>
+                                                            <option value="in-progress">In Progress</option>
+                                                            <option value="completed">Completed</option>
+                                                        </select>
                                                     ) : (
                                                         data.status
                                                     )}
                                                 </td>
                                                 <td className="todo-list-sub-content" id='todo-list-deadline-content'>
                                                     {editableId === data._id ? (
-                                                        <input type="date" value={editedDeadline} onChange={(e) => setEditedDeadline(e.target.value)} id="edit-deadline" className="edit-input-box" />
+                                                        <input
+                                                            type="date"
+                                                            value={state.editedDeadline}
+                                                            onChange={(e) => setState(prevState => ({ ...prevState, editedDeadline: e.target.value }))}
+                                                            className="edit-input-box" id="edit-deadline"
+                                                        />
                                                     ) : (
-                                                        data.deadline ? data.deadline : ''
+                                                        new Date(data.deadline).toLocaleDateString()
                                                     )}
                                                 </td>
                                                 <td className="todo-list-sub-content actions-container" id='todo-list-actions-content'>
                                                     {editableId === data._id ? (
-                                                        <button id='save-btn' className='action-btn' onClick={() => saveEditedTask(data._id)}>Save</button>
+                                                        <>
+                                                            <button id='save-btn' className='action-btn' onClick={() => saveEditedTask(data._id)}>Save</button>
+                                                            <button id='delete-btn' className='action-btn' onClick={() => toggleEditable(null)}>Cancel</button>
+                                                        </>
                                                     ) : (
-                                                        <button id='edit-btn' className='action-btn' onClick={() => toggleEditable(data._id)}>Edit</button>
+                                                        <>
+                                                            <button id='edit-btn' className='action-btn' onClick={() => toggleEditable(data._id)}>Edit</button>
+                                                            <button id='delete-btn' className='action-btn' onClick={() => deleteTask(data._id)}>Delete</button>
+                                                        </>
                                                     )}
-                                                    <button id='delete-btn' className='action-btn' onClick={() => deleteTask(data._id)}>Delete</button>
                                                 </td>
                                             </tr>
-                                        ))
-                                        }
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>
@@ -259,7 +304,6 @@ export default function TodoList() {
                     )}
                 </div>
             </div>
-
         </>
-    )
+    );
 }
