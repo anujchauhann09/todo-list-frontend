@@ -66,7 +66,19 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} id="contact-form">
                     <input type="text" placeholder='Enter name' className="input-box" value={name} onChange={(e) => setName(e.target.value)} />
                     <input type="email" placeholder='Enter email' className="input-box" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <input type="number" placeholder='Enter contact number' min={0} max={9} className="input-box" value={contactNumber} onChange={(e) => setContactNumber(e.target.value)} />
+                    <input
+                        type="text"
+                        placeholder='Enter contact number'
+                        className="input-box"
+                        value={contactNumber}
+                        onChange={(e) => {
+                            const value = e.target.value;
+                            if (/^\d{0,10}$/.test(value)) {
+                                setContactNumber(Number(value));
+                            }
+                        }}
+                        maxLength={10}
+                    />
                     <textarea
                         className='input-box'
                         id='textarea'
