@@ -257,6 +257,18 @@ export default function TodoList() {
                     <h2 id="todo-list-heading">Todo List</h2>
                     {todoList.length === 0 ? (
                         <div id='no-todos-row'>
+                        <div className="table-wrapper">
+                            <table className="table">
+                                <thead>
+                                    <tr id="todo-list-sub-headings">
+                                        <th className='todo-list-sub-heading' id='todo-list-task-heading'>Todo</th>
+                                        <th className='todo-list-sub-heading' id='todo-list-status-heading'>Status</th>
+                                        <th className='todo-list-sub-heading' id='todo-list-deadline-heading'>Deadline</th>
+                                        <th className='todo-list-sub-heading' id='todo-list-actions-heading'>Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                             <div className='no-todos'>
                                 {Array.from("Please add todo...").map((char, index) => (
                                     <span key={index}>

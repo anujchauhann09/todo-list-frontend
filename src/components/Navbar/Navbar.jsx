@@ -38,7 +38,8 @@ export default function Navbar({ name, isAuthenticated, handleLogout }) {
     return (
         <nav className='navbar'>
             <div className='navbar-container'>
-                <div className='general-navbar'><Link to='/'><span id='todo-app-logo'>TodoApp</span></Link>
+                <div className='general-navbar'>
+                    <Link to='/'><span id='todo-app-logo'>TodoApp</span></Link>
                     <button ref={buttonRef} type='button' id='menu-toggle' onClick={toggleMenu}>
                         ☰
                     </button></div>
