@@ -90,7 +90,7 @@ export default function TodoList() {
     }
 
     const validateStatus =(status) => {
-        return status === 'Select Status'
+        return status !== 'Select Status'
     }
 
     const addTask = () => {
@@ -112,7 +112,7 @@ export default function TodoList() {
             toast.error("Task cannot be empty.");
             return;
         }
-        else if (validateStatus(newStatus)) {
+        else if (!validateStatus(newStatus)) {
             toast.error("Invalid status.");
             return;
         }
@@ -178,7 +178,7 @@ export default function TodoList() {
         } else if (!validateTask(editedTask)) {
             toast.error("Task cannot be empty.");
             return;
-        } else if (validateStatus(editedStatus)) {
+        } else if (!validateStatus(editedStatus)) {
             toast.error("Invalid status.");
             return;
         }
@@ -308,10 +308,10 @@ export default function TodoList() {
                                                             onChange={(e) => setState(prevState => ({ ...prevState, editedStatus: e.target.value }))}
                                                             className="edit-input-box" id="edit-status"
                                                         >
-                                                            <option value="select-status">Select Status</option>
-                                                            <option value="pending">Pending</option>
-                                                            <option value="in-progress">In Progress</option>
-                                                            <option value="completed">Completed</option>
+                                                            <option value="Select Status">Select Status</option>
+                                                            <option value="Pending">Pending</option>
+                                                            <option value="In Progress">In Progress</option>
+                                                            <option value="Completed">Completed</option>
                                                         </select>
                                                     ) : (
                                                         data.status
